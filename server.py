@@ -12,7 +12,7 @@ def relay_request():
         if not prompt:
             return jsonify({"error": "Missing prompt"}), 400
 
-        # Debug print to log API key status
+        # Debug line — we need to see this in the logs
         print("Using API key:", BROWSERUSE_API_KEY)
 
         response = requests.post(
@@ -27,6 +27,7 @@ def relay_request():
         return jsonify(response.json()), response.status_code
 
     except Exception as e:
+        print("ERROR:", str(e))  # Also log exceptions
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
