@@ -12,6 +12,9 @@ def relay_request():
         if not prompt:
             return jsonify({"error": "Missing prompt"}), 400
 
+        # Debug print to log API key status
+        print("Using API key:", BROWSERUSE_API_KEY)
+
         response = requests.post(
             "https://agent.browseruse.com/v1/query",
             headers={
